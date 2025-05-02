@@ -7,7 +7,7 @@ import os
 
 # ตรวจสอบและดาวน์โหลดโมเดล (จาก Google Drive)
 if not os.path.exists("best_model.pt"):
-    url = "https://drive.google.com/uc?id=10m3Hhi3dNKr7lsFVbL_MpkDmqise9G6u"  # แก้ลิงก์ให้ใช้ได้กับ gdown
+    url = "https://drive.google.com/file/d/1-nHE_CS0jPnlMKM1KhWRbcoYr7MU_Idz"  # แก้ลิงก์ให้ใช้ได้กับ gdown
     try:
         gdown.download(url, "best_model.pt", quiet=False)
     except Exception as e:
