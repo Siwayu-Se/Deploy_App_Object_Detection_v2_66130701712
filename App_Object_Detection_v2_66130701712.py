@@ -7,7 +7,8 @@ import os
 
 # ตรวจสอบและดาวน์โหลดโมเดล (จาก Google Drive)
 if not os.path.exists("best_model.pt"):
-    url = "https://drive.google.com/file/d/1-nHE_CS0jPnlMKM1KhWRbcoYr7MU_Idz"  # แก้ลิงก์ให้ใช้ได้กับ gdown
+    file_id = "1-nHE_CS0jPnlMKM1KhWRbcoYr7MU_Idz"
+    url = f"https://drive.google.com/uc?id={file_id}"  # ลิงก์ที่ใช้ได้กับ gdown
     try:
         gdown.download(url, "best_model.pt", quiet=False)
     except Exception as e:
@@ -53,7 +54,7 @@ if uploaded_file:
         else:
             class_ids = boxes.cls.cpu().numpy().astype(int)
             confidences = boxes.conf.cpu().numpy().round(2)
-            class_names_all = model.names  # ใช้จากตัวโมเดลโดยตรง
+            class_names_all = model.names
             class_names = [class_names_all[i] for i in class_ids]
 
             st.subheader("📋 Detection Details")
@@ -61,4 +62,4 @@ if uploaded_file:
                 st.write(f"{i+1}. **{name}** ({conf*100:.1f}%)")
 
     except Exception as e:
-        st.error(f"❌ เกิดข้อผิดพลาด: {e}") 
+        st.error(f"❌ เกิดข้อผิดพลาด: {e}")
